@@ -7,7 +7,7 @@ interface victim {
     function withdrawETH(uint256) external;
 }
 
-contract RettrancyAttack {
+contract ReentrancyAttack {
     victim Victim;
 
     constructor(address addr) {
